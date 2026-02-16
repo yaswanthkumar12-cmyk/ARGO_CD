@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dashboard-html
+  namespace: argocd
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Deployment Dashboard</title>
+        <style>
+            body { font-family: Arial; background: #f5f5f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+            .version-box { background: #fff; padding: 40px 60px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); font-size: 32px; color: #333; text-align: center; }
+        </style>
+    </head>
+    <body>
+        <div class="version-box">Deployed Version: 1.0.0</div>
+    </body>
+    </html>
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashboard
+  namespace: argocd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dashboard
+  template:
+    metadata:
+      labels:
+        app: dashboard
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:stable-alpine
+        volumeMounts:
+        - name: html
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: html
+        configMap:
+          name: dashboard-html
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dashboard
+  namespace: argocd
+spec:
+  selector:
+    app: dashboard
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: NodePort
