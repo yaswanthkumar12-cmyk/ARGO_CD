@@ -26,6 +26,12 @@ httpRoute:
   hosts: []
   annotations: {}
 
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+
 htmlContent: |
   <!DOCTYPE html>
   <html lang="en">
