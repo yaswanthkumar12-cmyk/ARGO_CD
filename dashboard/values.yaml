@@ -44,6 +44,6 @@ htmlContent: |
       </style>
   </head>
   <body>
-      <div class="version-box">Deployed Version: {{ .Values.dashboardVersion }}</div>
+      <div class="version-box">Deployed Version: DASHBOARD_VERSION</div>
   </body>
   </html>

@@ -5,4 +5,4 @@ metadata:
   namespace: {{ .Release.Namespace }}
 data:
   index.html: |-
-    {{ .Values.htmlContent | replace "{{ .Values.dashboardVersion }}" .Values.dashboardVersion | indent 4 }}
+{{ .Values.htmlContent | replace "DASHBOARD_VERSION" .Values.dashboardVersion | nindent 4 }}
