@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "dashboard.fullname" . }}
-  namespace: argocd
+  name: dashboard
+  namespace: {{ .Release.Namespace }}
 spec:
   selector:
-    app: {{ include "dashboard.name" . }}
+    app: dashboard
   ports:
     - protocol: TCP
       port: {{ .Values.service.port }}

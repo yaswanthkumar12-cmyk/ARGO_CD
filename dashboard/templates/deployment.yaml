@@ -1,25 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "dashboard.fullname" . }}
-  namespace: argocd
+  name: dashboard
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "dashboard.name" . }}
+      app: dashboard
   template:
     metadata:
       labels:
-        app: {{ include "dashboard.name" . }}
+        app: dashboard
     spec:
       containers:
       - name: nginx
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         volumeMounts:
         - name: html
           mountPath: /usr/share/nginx/html
       volumes:
       - name: html
         configMap:
-          name: {{ include "dashboard.fullname" . }}-html
+          name: dashboard-html
