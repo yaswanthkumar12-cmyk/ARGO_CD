@@ -4,5 +4,5 @@ metadata:
   name: dashboard-html
   namespace: {{ .Release.Namespace }}
 data:
-  index.html: |
-{{ .Values.htmlContent | indent 4 }}
+  index.html: |-
+    {{ .Values.htmlContent | replace "{{ .Values.dashboardVersion }}" .Values.dashboardVersion | indent 4 }}
