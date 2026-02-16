@@ -11,6 +11,10 @@ service:
   type: NodePort
   port: 80
 
+serviceAccount:
+  create: false
+  name: ""
+
 htmlContent: |
   <!DOCTYPE html>
   <html lang="en">
@@ -23,6 +27,6 @@ htmlContent: |
       </style>
   </head>
   <body>
-      <div class="version-box">Deployed Version: 1.0.0</div>
+      <div class="version-box">Deployed Version: {{ .Values.dashboardVersion }}</div>
   </body>
   </html>

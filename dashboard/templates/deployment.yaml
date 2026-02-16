@@ -13,6 +13,7 @@ spec:
       labels:
         app: dashboard
     spec:
+      serviceAccountName: {{ .Values.serviceAccount.name | default (include "dashboard.fullname" .) }}
       containers:
       - name: nginx
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
