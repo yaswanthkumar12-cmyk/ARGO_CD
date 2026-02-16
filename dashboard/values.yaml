@@ -21,6 +21,11 @@ ingress:
   annotations: {}
   tls: []
 
+httpRoute:
+  enabled: false
+  hosts: []
+  annotations: {}
+
 htmlContent: |
   <!DOCTYPE html>
   <html lang="en">
