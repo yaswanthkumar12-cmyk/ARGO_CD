@@ -1,0 +1,12 @@
+replicaCount: 1
+
+image:
+  repository: nginx
+  tag: stable-alpine
+  pullPolicy: IfNotPresent
+
+dashboardVersion: "1.0.0"
+
+service:
+  type: NodePort
+  port: 80
