@@ -1,11 +1,11 @@
-replicaCount: 1
+replicaCount: 3
 
 image:
   repository: nginx
   tag: stable-alpine
   pullPolicy: IfNotPresent
 
-dashboardVersion: "2.2.2"
+dashboardVersion: "2.0.0"
 
 service:
   type: NodePort
