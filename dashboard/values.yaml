@@ -5,7 +5,7 @@ image:
   tag: stable-alpine
   pullPolicy: IfNotPresent
 
-dashboardVersion: "1.0.0"
+dashboardVersion: "1.0.2"
 
 service:
   type: NodePort
